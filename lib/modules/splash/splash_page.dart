@@ -9,34 +9,107 @@ class SplashPage extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: AppTheme.gradients.background,
         ),
-        child: Column(
-          children: [
-            Image.asset(
-              'assets/images/retangulo-dir.png',
-              width: 198,
-              height: 98,
-            ),
-            Image.asset(
-              'assets/images/retangulo-dir.png',
-              width: 114,
-              height: 58,
-            ),
-            Image.asset(
-              'assets/images/logo.png',
-              width: 128,
-              height: 112,
-            ),
-            Image.asset(
-              'assets/images/retangulo-esq.png',
-              width: 114,
-              height: 58,
-            ),
-            Image.asset(
-              'assets/images/retangulo-esq.png',
-              width: 198,
-              height: 98,
-            )
-          ],
+        child: SafeArea(
+          top: true,
+          bottom: true,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                children: [
+                  SizedBox(
+                    height: 30,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 24,
+                      ),
+                      Opacity(
+                        opacity: 0.3,
+                        child: Image.asset(
+                          'assets/images/retangulo-dir.png',
+                          width: 198,
+                          height: 98,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 24,
+                      ),
+                      Opacity(
+                        opacity: 0.3,
+                        child: Image.asset(
+                          'assets/images/retangulo-dir.png',
+                          width: 114,
+                          height: 58,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 60,
+              ),
+              Image.asset(
+                'assets/images/logo.png',
+                width: 128,
+                height: 112,
+              ),
+              SizedBox(
+                height: 60,
+              ),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Opacity(
+                        opacity: 0.3,
+                        child: Image.asset(
+                          'assets/images/retangulo-esq.png',
+                          width: 114,
+                          height: 58,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 24,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 24,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Opacity(
+                        opacity: 0.3,
+                        child: Image.asset(
+                          'assets/images/retangulo-esq.png',
+                          width: 198,
+                          height: 98,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 24,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
