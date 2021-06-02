@@ -3,12 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:split_it/modules/login/widgets/social_button.dart';
 import 'package:split_it/theme/app_theme.dart';
 
+import 'login_controller.dart';
+
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  LoginController controller = LoginController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: ListTile(
                     leading: Image.asset('assets/images/emoji.png'),
                     title: Text(
-                      'Faça seu login com uma das contas abaixo: ',
+                      'Faça seu login abaixo: ',
                       style: AppTheme.textStyles.button,
                     ),
                   ),
@@ -53,18 +57,23 @@ class _LoginPageState extends State<LoginPage> {
                   child: SocialButtonWidget(
                     imagePath: 'assets/images/google.png',
                     label: 'Entrar com Google',
+                    onTap: () {
+                      controller.googleSignIn();
+                    },
                   ),
                 ),
                 SizedBox(
                   height: 12,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                  child: SocialButtonWidget(
-                    imagePath: 'assets/images/apple.png',
-                    label: 'Entrar com Apple',
-                  ),
-                ),
+                //TODO: LOGIN APPLE (NÃO TENHO IOS)
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 32.0),
+                //   child: SocialButtonWidget(
+                //     imagePath: 'assets/images/apple.png',
+                //     label: 'Entrar com Apple',
+                //     onTap: () {},
+                //   ),
+                // ),
               ],
             ),
           ],
