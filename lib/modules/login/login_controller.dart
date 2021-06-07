@@ -1,32 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
-import 'package:split_it/modules/login/models/user_model.dart';
+import 'login_service.dart';
 import 'login_state.dart';
 
 class LoginController {
   LoginState state = LoginStateEmpty();
   // void callback que serve para informar a página da atualização
   VoidCallback onUpdate;
+  Function(LoginState state)? onChange;
 
-  LoginController({required this.onUpdate});
+  //injeção de dependência
+  final LoginService service;
+
+  LoginController({required this.onUpdate, required this.service});
 
   Future<void> googleSignIn() async {
-    GoogleSignIn _googleSignIn = GoogleSignIn(
-      scopes: [
-        'email',
-      ],
-    );
     try {
       state = LoginStateLoading();
-      onUpdate();
-      final account = await _googleSignIn.signIn();
-      state = LoginStateSuccess(
-        user: UserModel.google(account!),
-      );
-      onUpdate();
+      update();
+      final user = await service.googleSignIn();
+      state = LoginStateSuccess(user: user);
+      update();
     } catch (error) {
       state = LoginStateFailure(message: error.toString());
-      onUpdate();
+      update();
     }
+  }
+
+  void update() {
+    onUpdate();
+    if (onChange != null) {
+      onChange!(state);
+    }
+  }
+
+  void listen(Function(LoginState state) onChange) {
+    this.onChange = onChange;
   }
 }

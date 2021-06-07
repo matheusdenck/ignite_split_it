@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:split_it/modules/login/login_service.dart';
 import 'package:split_it/modules/login/widgets/social_button.dart';
 import 'package:split_it/theme/app_theme.dart';
 
@@ -17,21 +18,23 @@ class _LoginPageState extends State<LoginPage> {
   //inicialização da variável controller;
   @override
   void initState() {
-    controller = LoginController(onUpdate: () {
-      if (controller.state is LoginStateSuccess) {
-        final user = (controller.state as LoginStateSuccess).user;
-        Navigator.pushNamed(context, '/home', arguments: user);
-      } else {
-        setState(() {});
-      }
-    });
+    controller = LoginController(
+        service: LoginServiceImpl(),
+        onUpdate: () {
+          if (controller.state is LoginStateSuccess) {
+            final user = (controller.state as LoginStateSuccess).user;
+            Navigator.pushReplacementNamed(context, '/home', arguments: user);
+          } else {
+            setState(() {});
+          }
+        });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.colors.backgroundPrimary,
+      backgroundColor: AppTheme.colors.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
