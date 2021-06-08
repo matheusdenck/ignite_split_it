@@ -8,6 +8,10 @@ abstract class AppColors {
   Color get border;
   Color get addButton;
   Color get error;
+  Color get eventTileTitle;
+  Color get eventTileSubtitle;
+  Color get eventTileMoney;
+  Color get eventTilePeople;
 }
 
 class AppColorsDefault implements AppColors {
@@ -25,4 +29,16 @@ class AppColorsDefault implements AppColors {
   Color get addButton => Color(0xFFF5F5F5);
   @override
   Color get error => Color(0xFFE83F5B);
+
+  @override
+  Color get eventTileMoney => Color(0xFF666666);
+
+  @override
+  Color get eventTilePeople => Color(0xFFA4B2AE);
+
+  @override
+  Color get eventTileSubtitle => Color(0xFF666666);
+
+  @override
+  Color get eventTileTitle => Color(0xFF455250);
 }

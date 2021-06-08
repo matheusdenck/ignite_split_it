@@ -52,7 +52,7 @@ class InfoCardWidget extends StatelessWidget {
             height: 4,
           ),
           Text(
-            'R\$${value.abs()}',
+            'R\$${(value.abs()).toStringAsFixed(2)}',
             style: textStyle,
           ),
         ],

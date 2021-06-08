@@ -6,10 +6,13 @@ abstract class AppTextStyles {
   TextStyle get title;
   TextStyle get button;
   TextStyle get userName;
-  TextStyle get text12;
   TextStyle get infoCardTitle;
   TextStyle get infoCardSubtitle1;
   TextStyle get infoCardSubtitle2;
+  TextStyle get eventTileTitle;
+  TextStyle get eventTileSubtitle;
+  TextStyle get eventTileMoney;
+  TextStyle get eventTilePeople;
 }
 
 class AppTextStyleDefault implements AppTextStyles {
@@ -42,13 +45,6 @@ class AppTextStyleDefault implements AppTextStyles {
       );
 
   @override
-  TextStyle get text12 => GoogleFonts.inter(
-        fontSize: 12,
-        fontWeight: FontWeight.w400,
-        color: AppTheme.colors.button,
-      );
-
-  @override
   TextStyle get infoCardSubtitle1 => GoogleFonts.inter(
         fontSize: 20,
         fontWeight: FontWeight.w600,
@@ -60,5 +56,33 @@ class AppTextStyleDefault implements AppTextStyles {
         fontSize: 20,
         fontWeight: FontWeight.w600,
         color: AppTheme.colors.error,
+      );
+
+  @override
+  TextStyle get eventTileSubtitle => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.eventTileSubtitle,
+      );
+
+  @override
+  TextStyle get eventTileTitle => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: AppTheme.colors.eventTileTitle,
+      );
+
+  @override
+  TextStyle get eventTileMoney => GoogleFonts.inter(
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.eventTileMoney,
+      );
+
+  @override
+  TextStyle get eventTilePeople => GoogleFonts.inter(
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.eventTilePeople,
       );
 }

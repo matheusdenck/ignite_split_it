@@ -1,45 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:split_it/modules/home/widgets/icon_dollar_widget.dart';
+import 'package:split_it/shared/models/event_model.dart';
+import 'package:split_it/theme/app_theme.dart';
+import 'dart:math';
 
 class EventTileWidget extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final double value;
-  final double people;
+  final EventModel model;
 
-  const EventTileWidget(
-      {Key? key,
-      required this.title,
-      required this.subtitle,
-      required this.value,
-      required this.people})
-      : super(key: key);
+  const EventTileWidget({Key? key, required this.model}) : super(key: key);
+
+  IconDollarType get type =>
+      model.value >= 0 ? IconDollarType.receive : IconDollarType.send;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-      child: Row(
-        children: [
-          IconDollarWidget(type: IconDollarType.receive),
-          Expanded(
-            child: ListTile(
-              title: Text(title),
-              subtitle: Text(subtitle),
-              trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('R\$${value.abs()}'),
-                  SizedBox(
-                    height: 5,
+    return Row(
+      children: [
+        IconDollarWidget(type: type),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(model.title,
+                      style: AppTheme.textStyles.eventTileTitle),
+                  subtitle: Text(model.created.toString(),
+                      style: AppTheme.textStyles.eventTileSubtitle),
+                  trailing: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text('R\$${(model.value.abs()).toStringAsFixed(2)}',
+                          style: AppTheme.textStyles.eventTileMoney),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                          '${model.people.toStringAsFixed(0)} pessoa${model.people == 1 ? '' : 's'}',
+                          style: AppTheme.textStyles.eventTilePeople),
+                    ],
                   ),
-                  Text(people == 1 ? '$people' : '${people}s'),
-                ],
-              ),
+                ),
+                Divider(),
+              ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
