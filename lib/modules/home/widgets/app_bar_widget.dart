@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:split_it/modules/home/widgets/app_bar/widgets/transaction_card_widget.dart';
 import 'package:split_it/modules/login/models/user_model.dart';
 import 'package:split_it/theme/app_theme.dart';
-
-import 'widgets/add_button_widget.dart';
+import 'add_button_widget.dart';
+import 'info_card_widget.dart';
 
 class AppBarWidget extends PreferredSize {
   final UserModel user;
+  final VoidCallback onTapAddButton;
   AppBarWidget({
+    required this.onTapAddButton,
     required this.user,
   }) : super(
           preferredSize: Size.fromHeight(328),
@@ -18,7 +19,7 @@ class AppBarWidget extends PreferredSize {
               children: [
                 Container(
                   height: 244,
-                  color: AppTheme.colors.backgroundSecondary,
+                  color: AppTheme.colors.background,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -39,7 +40,7 @@ class AppBarWidget extends PreferredSize {
                       ),
                       SizedBox(width: 16),
                       AddButtonWidget(
-                        onTap: () {},
+                        onTap: onTapAddButton,
                       ),
                     ],
                   ),
@@ -50,11 +51,11 @@ class AppBarWidget extends PreferredSize {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      TransactionCard(),
+                      InfoCardWidget(value: 145.41),
                       SizedBox(
                         width: 21,
                       ),
-                      TransactionCard(isGreen: false),
+                      InfoCardWidget(value: -120.34),
                     ],
                   ),
                 ),
