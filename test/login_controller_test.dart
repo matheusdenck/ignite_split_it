@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:split_it/modules/login/login_controller.dart';
+import 'package:split_it/screens/login/login_controller.dart';
 import 'package:split_it/modules/login/login_service.dart';
 import 'package:split_it/modules/login/login_state.dart';
 import 'package:split_it/modules/login/models/user_model.dart';

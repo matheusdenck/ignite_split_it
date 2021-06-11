@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:split_it/modules/home/widgets/icon_dollar_widget.dart';
 import 'package:split_it/shared/models/event_model.dart';
 import 'package:split_it/theme/app_theme.dart';
 import 'dart:math';
+
+import 'icon_dollar_widget.dart';
 
 class EventTileWidget extends StatelessWidget {
   final EventModel model;

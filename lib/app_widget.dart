@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'modules/error/error_page.dart';
-import 'modules/home/home_page.dart';
-import 'modules/login/login_page.dart';
-import 'modules/splash/splash_page.dart';
+import 'screens/error/error_page.dart';
+import 'screens/home/home_page.dart';
+import 'screens/login/login_page.dart';
+import 'screens/splash/splash_page.dart';
 
 class AppWidget extends StatelessWidget {
   @override
