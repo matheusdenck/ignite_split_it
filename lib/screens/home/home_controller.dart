@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:split_it/screens/home/home_state.dart';
 import 'package:split_it/screens/home/repositories/home_repository.dart';
 import 'package:split_it/screens/home/repositories/home_repository_mock.dart';
-import 'package:split_it/shared/models/event_model.dart';
 
 class HomeController {
-  final List<EventModel> events = [];
   late HomeRepository repository;
+  HomeState state = HomeStateEmpty();
 
   HomeController() {
     repository = HomeRepositoryMock();
   }
 
+  //void callback necessário para passar as infos para atualizar o set state na home page
   getEvents(VoidCallback onUpdate) async {
+    state = HomeStateLoading();
     final response = await repository.getEvents();
-    events.addAll(response);
+    state = HomeStateSuccess(events: response);
     onUpdate();
   }
 }

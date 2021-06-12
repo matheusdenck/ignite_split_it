@@ -3,7 +3,8 @@ import 'package:split_it/screens/home/widgets/event_tile_widget.dart';
 import 'package:split_it/screens/login/models/user_model.dart';
 
 import 'home_controller.dart';
-import 'widgets/app_bar_widget.dart';
+import 'home_state.dart';
+import 'widgets/app_bar/app_bar_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,11 +39,20 @@ class _HomePageState extends State<HomePage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              ...controller.events
-                  .map(
-                    (e) => EventTileWidget(model: e),
-                  )
-                  .toList()
+              if (controller.state is HomeStateLoading) ...[
+                CircularProgressIndicator(),
+              ] else if (controller.state is HomeStateSuccess) ...[
+                ...(controller.state as HomeStateSuccess)
+                    .events
+                    .map(
+                      (e) => EventTileWidget(model: e),
+                    )
+                    .toList()
+              ] else if (controller is HomeStateFailure) ...[
+                Text((controller.state as HomeStateFailure).message)
+              ] else ...[
+                Container()
+              ]
             ],
           ),
         ),

@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:split_it/screens/login/models/user_model.dart';
 import 'package:split_it/theme/app_theme.dart';
-import 'add_button_widget.dart';
-import 'info_card_widget.dart';
+import '../add_button_widget.dart';
+import '../info_card_widget.dart';
 
 class AppBarWidget extends PreferredSize {
   final UserModel user;
