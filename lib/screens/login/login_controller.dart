@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'login_service.dart';
 import 'login_state.dart';
 
-class LoginController {
-  LoginState state = LoginStateEmpty();
+class HomeController {
+  LoginState state = HomeStateEmpty();
   // void callback que serve para informar a página da atualização
   VoidCallback onUpdate;
   Function(LoginState state)? onChange;
 
   //injeção de dependência
-  final LoginService service;
+  final HomeRepository service;
 
-  LoginController({required this.onUpdate, required this.service});
+  HomeController({required this.onUpdate, required this.service});
 
   Future<void> googleSignIn() async {
     try {

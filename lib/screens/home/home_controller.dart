@@ -7,8 +7,8 @@ class HomeController {
   late HomeRepository repository;
   HomeState state = HomeStateEmpty();
 
-  HomeController() {
-    repository = HomeRepositoryMock();
+  HomeController({HomeRepository? repository}) {
+    this.repository = repository ?? HomeRepositoryMock();
   }
 
   //void callback necessário para passar as infos para atualizar o set state na home page

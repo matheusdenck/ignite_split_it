@@ -1,20 +1,20 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:split_it/screens/login/login_controller.dart';
-import 'package:split_it/screens/login/login_service.dart';
+import 'package:split_it/screens/home/home_controller.dart';
+import 'package:split_it/screens/home/repositories/home_repository.dart';
 import 'package:split_it/screens/login/login_state.dart';
 import 'package:split_it/screens/login/models/user_model.dart';
 
 //classe mockada
-class LoginServiceMock extends Mock implements HomeRepository {}
+class HomeRepositoryMock extends Mock implements HomeRepository {}
 
 void main() {
   late HomeController controller;
-  late HomeRepository service;
+  late HomeRepository repository;
 
   setUp(() {
-    service = LoginServiceMock();
-    controller = HomeController(service: service, onUpdate: () {});
+    repository = HomeRepositoryMock();
+    controller = HomeController(repository: repository);
   });
 
   test('Testando se o estado do login está vazio no começo da aplicação', () {
@@ -24,7 +24,7 @@ void main() {
   test('Testando o Google SignIn retornando Success', () async {
     final states = <LoginState>[];
     controller.listen((state) => states.add(state));
-    when(service.googleSignIn)
+    when(repository.googleSignIn)
         .thenAnswer((_) async => UserModel(email: 'email', id: 'id'));
     await controller.googleSignIn();
     expect(states[0], isInstanceOf<LoginStateLoading>());
@@ -35,7 +35,7 @@ void main() {
   test('Testando o Google SignIn retornando Failure', () async {
     final states = <LoginState>[];
     controller.listen((state) => states.add(state));
-    when(service.googleSignIn).thenThrow('Erro.');
+    when(repository.googleSignIn).thenThrow('Erro.');
     await controller.googleSignIn();
     expect(states[0], isInstanceOf<LoginStateLoading>());
     expect(states[1], isInstanceOf<LoginStateFailure>());

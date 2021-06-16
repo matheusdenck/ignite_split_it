@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:split_it/screens/home/widgets/bottom_app_bar/bottom_app_bar_widget.dart';
 import 'package:split_it/screens/login/models/user_model.dart';
 import 'package:split_it/theme/app_theme.dart';
 import '../add_button_widget.dart';
@@ -47,17 +48,7 @@ class AppBarWidget extends PreferredSize {
                 ),
                 Align(
                   alignment: Alignment(0.0, 1.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      InfoCardWidget(value: 145.41),
-                      SizedBox(
-                        width: 21,
-                      ),
-                      InfoCardWidget(value: -120.34),
-                    ],
-                  ),
+                  child: BottomAppBarWidget(),
                 ),
               ],
             ),
