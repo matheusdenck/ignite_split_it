@@ -6,19 +6,19 @@ import 'package:split_it/screens/login/login_state.dart';
 import 'package:split_it/screens/login/models/user_model.dart';
 
 //classe mockada
-class LoginServiceMock extends Mock implements HomeRepository {}
+class LoginServiceMock extends Mock implements LoginRepository {}
 
 void main() {
-  late HomeController controller;
-  late HomeRepository service;
+  late LoginController controller;
+  late LoginRepository service;
 
   setUp(() {
     service = LoginServiceMock();
-    controller = HomeController(service: service, onUpdate: () {});
+    controller = LoginController(service: service, onUpdate: () {});
   });
 
   test('Testando se o estado do login está vazio no começo da aplicação', () {
-    expect(controller.state, isInstanceOf<HomeStateEmpty>());
+    expect(controller.state, isInstanceOf<LoginStateEmpty>());
   });
 
   test('Testando o Google SignIn retornando Success', () async {

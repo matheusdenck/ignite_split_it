@@ -5,6 +5,8 @@ import 'package:split_it/screens/home/repositories/home_repository_mock.dart';
 
 class HomeController {
   late HomeRepository repository;
+  Function(HomeState state)? onListen;
+
   HomeState state = HomeStateEmpty();
 
   HomeController({HomeRepository? repository}) {
@@ -17,5 +19,9 @@ class HomeController {
     final response = await repository.getEvents();
     state = HomeStateSuccess(events: response);
     onUpdate();
+  }
+
+  void listen(Function(HomeState state) onChange) {
+    onListen = onChange;
   }
 }

@@ -2,7 +2,7 @@ import 'models/user_model.dart';
 
 abstract class LoginState {}
 
-class HomeStateEmpty extends LoginState {}
+class LoginStateEmpty extends LoginState {}
 
 class LoginStateLoading extends LoginState {}
 

@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:split_it/screens/home/home_controller.dart';
+import 'package:split_it/screens/home/home_state.dart';
 import 'package:split_it/screens/home/repositories/home_repository.dart';
-import 'package:split_it/screens/login/login_state.dart';
 import 'package:split_it/screens/login/models/user_model.dart';
 
 //classe mockada
@@ -21,8 +21,8 @@ void main() {
     expect(controller.state, isInstanceOf<HomeStateEmpty>());
   });
 
-  test('Testando o Google SignIn retornando Success', () async {
-    final states = <LoginState>[];
+  test('Testando o GetEvents - Success', () async {
+    final states = <HomeState>[];
     controller.listen((state) => states.add(state));
     when(repository.googleSignIn)
         .thenAnswer((_) async => UserModel(email: 'email', id: 'id'));
@@ -33,7 +33,7 @@ void main() {
   });
 
   test('Testando o Google SignIn retornando Failure', () async {
-    final states = <LoginState>[];
+    final states = <HomeState>[];
     controller.listen((state) => states.add(state));
     when(repository.googleSignIn).thenThrow('Erro.');
     await controller.googleSignIn();
@@ -41,12 +41,5 @@ void main() {
     expect(states[1], isInstanceOf<LoginStateFailure>());
     expect((states[1] as LoginStateFailure).message, 'Erro.');
     expect(states.length, 2);
-  });
-
-  test('Testando o método listen', () {
-    controller.state = LoginStateLoading();
-    controller
-        .listen((state) => expect(state, isInstanceOf<LoginStateLoading>()));
-    controller.update();
   });
 }

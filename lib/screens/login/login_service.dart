@@ -2,11 +2,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 import 'models/user_model.dart';
 
-abstract class HomeRepository {
+abstract class LoginRepository {
   Future<UserModel> googleSignIn();
 }
 
-class LoginServiceImpl implements HomeRepository {
+class LoginServiceImpl implements LoginRepository {
   @override
   Future<UserModel> googleSignIn() async {
     GoogleSignIn _googleSignIn = GoogleSignIn(

@@ -12,12 +12,12 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   //late por ser uma variável inicializada posteriormente.
-  late HomeController controller;
+  late LoginController controller;
 
   //inicialização da variável controller;
   @override
   void initState() {
-    controller = HomeController(
+    controller = LoginController(
         service: LoginServiceImpl(),
         onUpdate: () {
           if (controller.state is LoginStateSuccess) {
