@@ -3,7 +3,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:split_it/screens/home/home_controller.dart';
 import 'package:split_it/screens/home/home_state.dart';
 import 'package:split_it/screens/home/repositories/home_repository.dart';
-import 'package:split_it/screens/login/models/user_model.dart';
+import 'package:split_it/shared/models/event_model.dart';
 
 //classe mockada
 class HomeRepositoryMock extends Mock implements HomeRepository {}
@@ -17,29 +17,32 @@ void main() {
     controller = HomeController(repository: repository);
   });
 
-  test('Testando se o estado do login está vazio no começo da aplicação', () {
+  test('Testando o GetEvents retornando Success', () async {
     expect(controller.state, isInstanceOf<HomeStateEmpty>());
-  });
-
-  test('Testando o GetEvents - Success', () async {
     final states = <HomeState>[];
     controller.listen((state) => states.add(state));
-    when(repository.googleSignIn)
-        .thenAnswer((_) async => UserModel(email: 'email', id: 'id'));
-    await controller.googleSignIn();
-    expect(states[0], isInstanceOf<LoginStateLoading>());
-    expect(states[1], isInstanceOf<LoginStateSuccess>());
+    when(repository.getEvents).thenAnswer((_) async => [
+          EventModel(
+            title: 'title',
+            created: DateTime.now(),
+            value: 100,
+            people: 1,
+          )
+        ]);
+    await controller.getEvents(() {});
+    expect(states[0], isInstanceOf<HomeStateLoading>());
+    expect(states[1], isInstanceOf<HomeStateSuccess>());
     expect(states.length, 2);
   });
 
-  test('Testando o Google SignIn retornando Failure', () async {
+  test('Testando o getEvents retornando Failure', () async {
     final states = <HomeState>[];
     controller.listen((state) => states.add(state));
-    when(repository.googleSignIn).thenThrow('Erro.');
-    await controller.googleSignIn();
-    expect(states[0], isInstanceOf<LoginStateLoading>());
-    expect(states[1], isInstanceOf<LoginStateFailure>());
-    expect((states[1] as LoginStateFailure).message, 'Erro.');
+    when(repository.getEvents).thenThrow('Erro.');
+    await controller.getEvents(() {});
+    expect(states[0], isInstanceOf<HomeStateLoading>());
+    expect(states[1], isInstanceOf<HomeStateFailure>());
+    expect((states[1] as HomeStateFailure).message, 'Erro.');
     expect(states.length, 2);
   });
 }
