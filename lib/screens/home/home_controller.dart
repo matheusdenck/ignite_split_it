@@ -14,21 +14,18 @@ class HomeController {
   }
 
   //void callback necessário para passar as infos para atualizar o set state na home page
-  getEvents(VoidCallback onUpdate) async {
-    state = HomeStateLoading();
-    update();
+  getEvents() async {
+    update(HomeStateLoading());
     try {
       final response = await repository.getEvents();
-      state = HomeStateSuccess(events: response);
-      update();
+      update(HomeStateSuccess(events: response));
     } catch (e) {
-      state = HomeStateFailure(message: e.toString());
-      update();
+      update(HomeStateFailure(message: e.toString()));
     }
-    onUpdate();
   }
 
-  void update() {
+  void update(HomeState state) {
+    this.state = state;
     if (onListen != null) {
       onListen!(state);
     }

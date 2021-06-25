@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:split_it/theme/app_theme.dart';
 
 import 'icon_dollar_widget.dart';
 
 class InfoCardWidget extends StatelessWidget {
   final double value;
+  final bool isLoading;
   const InfoCardWidget({
     Key? key,
     required this.value,
+    this.isLoading = false,
   }) : super(key: key);
 
   TextStyle get textStyle => value >= 0
@@ -51,10 +54,22 @@ class InfoCardWidget extends StatelessWidget {
           SizedBox(
             height: 4,
           ),
-          Text(
-            'R\$${(value.abs()).toStringAsFixed(2)}',
-            style: textStyle,
-          ),
+          if (isLoading) ...[
+            SizedBox(
+              width: 98,
+              height: 24,
+              child: Shimmer.fromColors(
+                baseColor: Colors.white,
+                highlightColor: Colors.grey.shade200,
+                child: Container(color: Colors.white),
+              ),
+            )
+          ] else ...[
+            Text(
+              'R\$${(value.abs()).toStringAsFixed(2)}',
+              style: textStyle,
+            ),
+          ],
         ],
       ),
     );
