@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:split_it/screens/home/widgets/event_tile_widget.dart';
 import 'package:split_it/screens/login/models/user_model.dart';
+import 'package:split_it/shared/models/event_model.dart';
 
 import 'home_controller.dart';
 import 'home_state.dart';
@@ -43,7 +44,10 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               if (controller.state is HomeStateLoading) ...[
-                CircularProgressIndicator(),
+                ...List.generate(
+                    2,
+                    (index) =>
+                        EventTileWidget(isLoading: true, model: EventModel())),
               ] else if (controller.state is HomeStateSuccess) ...[
                 ...(controller.state as HomeStateSuccess)
                     .events
