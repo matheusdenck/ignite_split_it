@@ -36,7 +36,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBarWidget(
         user: user,
-        onTapAddButton: () {},
+        onTapAddButton: () {
+          Navigator.pushNamed(context, '/create_split');
+        },
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
