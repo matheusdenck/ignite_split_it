@@ -13,7 +13,11 @@ class CreateSplitPage extends StatefulWidget {
 
 class _CreateSplitPageState extends State<CreateSplitPage> {
   final pages = [
-    StepOnePage(),
+    StepOnePage(
+      onChange: (value) {
+        print(value);
+      },
+    ),
     Container(
       color: Colors.blue,
     ),

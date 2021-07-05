@@ -21,6 +21,7 @@ abstract class AppColors {
   Color get stepperSubtitle;
   Color get textField;
   Color get hintTextField;
+  Color get inputBorder;
 }
 
 class AppColorsDefault implements AppColors {
@@ -83,4 +84,7 @@ class AppColorsDefault implements AppColors {
 
   @override
   Color get textField => Color(0xFF455250);
+
+  @override
+  Color get inputBorder => Color(0xFF455250);
 }
