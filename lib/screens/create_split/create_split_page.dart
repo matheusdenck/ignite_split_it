@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:split_it/screens/create_split/steps/one/step_one_page.dart';
+import 'package:split_it/screens/create_split/widgets/bottom_stepper_bar.dart';
 import 'package:split_it/screens/create_split/widgets/create_split_app_bar_widget.dart';
-import 'package:split_it/screens/create_split/widgets/stepper_next_button_widget.dart';
 import 'package:split_it/theme/app_theme.dart';
 
 class CreateSplitPage extends StatefulWidget {
@@ -12,9 +13,7 @@ class CreateSplitPage extends StatefulWidget {
 
 class _CreateSplitPageState extends State<CreateSplitPage> {
   final pages = [
-    Container(
-      color: Colors.red,
-    ),
+    StepOnePage(),
     Container(
       color: Colors.blue,
     ),
@@ -49,29 +48,8 @@ class _CreateSplitPageState extends State<CreateSplitPage> {
         actualPage: index,
       ),
       body: pages[index],
-      bottomNavigationBar: SafeArea(
-          bottom: true,
-          child: Container(
-            height: 56,
-            child: Row(
-              children: [
-                StepperNextButtonWidget(
-                    label: 'CANCELAR',
-                    onTap: () {
-                      backPage();
-                    }),
-                Container(
-                  width: 1,
-                  color: AppTheme.colors.divider.withOpacity(0.2),
-                ),
-                StepperNextButtonWidget(
-                    label: 'CONTINUAR',
-                    onTap: () {
-                      nextPage();
-                    }),
-              ],
-            ),
-          )),
+      bottomNavigationBar:
+          BottomStepperBarWidget(onTapNext: nextPage, onTapCancel: backPage),
     );
   }
 }

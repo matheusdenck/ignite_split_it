@@ -16,6 +16,10 @@ abstract class AppTextStyles {
   TextStyle get stepperIndicatorPrimary;
   TextStyle get stepperIndicatorSecondary;
   TextStyle get stepperNextButton;
+  TextStyle get stepperTitle;
+  TextStyle get stepperSubtitle;
+  TextStyle get textField;
+  TextStyle get hintTextField;
 }
 
 class AppTextStyleDefault implements AppTextStyles {
@@ -106,5 +110,33 @@ class AppTextStyleDefault implements AppTextStyles {
         fontSize: 12,
         fontWeight: FontWeight.w500,
         color: AppTheme.colors.stepperNextButton,
+      );
+
+  @override
+  TextStyle get stepperTitle => GoogleFonts.inter(
+        fontSize: 24,
+        fontWeight: FontWeight.w700,
+        color: AppTheme.colors.stepperTitle,
+      );
+
+  @override
+  TextStyle get stepperSubtitle => GoogleFonts.inter(
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.stepperSubtitle,
+      );
+
+  @override
+  TextStyle get textField => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: AppTheme.colors.textField,
+      );
+
+  @override
+  TextStyle get hintTextField => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.hintTextField,
       );
 }
