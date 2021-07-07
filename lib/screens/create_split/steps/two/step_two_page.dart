@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:split_it/screens/create_split/widgets/person_tile_widget.dart';
 import 'package:split_it/screens/create_split/widgets/step_input_text_widget.dart';
 import 'package:split_it/screens/create_split/widgets/step_title_widget.dart';
 
@@ -18,6 +19,14 @@ class _StepTwoPageState extends State<StepTwoPage> {
         StepInputTextWidget(
           onChange: (value) {},
           hintText: 'Nome da pessoa',
+        ),
+        SizedBox(height: 34),
+        PersonTileWidget(
+          name: 'Matheus Denck',
+          isRemovable: true,
+        ),
+        PersonTileWidget(
+          name: 'Matheus Denck',
         ),
       ],
     );
