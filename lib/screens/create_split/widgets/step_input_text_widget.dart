@@ -4,21 +4,28 @@ import 'package:split_it/theme/app_theme.dart';
 class StepInputTextWidget extends StatelessWidget {
   final void Function(String) onChange;
   final String hintText;
-  const StepInputTextWidget(
-      {Key? key, required this.hintText, required this.onChange})
-      : super(key: key);
+  final TextAlign align;
+  final EdgeInsets? padding;
+  const StepInputTextWidget({
+    Key? key,
+    required this.hintText,
+    required this.onChange,
+    this.align = TextAlign.center,
+    this.padding,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(
-        left: 64,
-        right: 64,
-        top: 40,
-      ),
+      padding: padding ??
+          const EdgeInsets.only(
+            left: 64,
+            right: 64,
+            top: 40,
+          ),
       child: TextField(
         onChanged: onChange,
-        textAlign: TextAlign.center,
+        textAlign: align,
         style: AppTheme.textStyles.textField,
         cursorColor: AppTheme.colors.background,
         decoration: InputDecoration(

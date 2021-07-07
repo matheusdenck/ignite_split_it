@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:split_it/screens/create_split/create_split_controller.dart';
 import 'package:split_it/screens/create_split/steps/one/step_one_page.dart';
+import 'package:split_it/screens/create_split/steps/three/step_three_page.dart';
 import 'package:split_it/screens/create_split/steps/two/step_two_page.dart';
 import 'package:split_it/screens/create_split/widgets/bottom_stepper_bar_widget.dart';
 import 'package:split_it/screens/create_split/widgets/create_split_app_bar_widget.dart';
@@ -28,9 +29,7 @@ class _CreateSplitPageState extends State<CreateSplitPage> {
         },
       ),
       StepTwoPage(),
-      Container(
-        color: Colors.purple,
-      ),
+      StepThreePage(),
     ];
     super.initState();
   }
