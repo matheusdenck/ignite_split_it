@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:split_it/screens/home/widgets/loading_widget.dart';
 import 'package:split_it/shared/models/event_model.dart';
 import 'package:split_it/theme/app_theme.dart';
@@ -63,7 +64,8 @@ class EventTileWidget extends StatelessWidget {
                   contentPadding: EdgeInsets.zero,
                   title: Text(model.title!,
                       style: AppTheme.textStyles.eventTileTitle),
-                  subtitle: Text(model.created.toString(),
+                  subtitle: Text(
+                      '${DateFormat('d MMMM', Intl.systemLocale).format(model.created!)}',
                       style: AppTheme.textStyles.eventTileSubtitle),
                   trailing: Column(
                     mainAxisAlignment: MainAxisAlignment.center,

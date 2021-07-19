@@ -23,6 +23,8 @@ dependencies:
   google_sign_in: ^5.0.4
   #Loading
   shimmer: ^2.0.0
+  #date format
+  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
