@@ -17,8 +17,6 @@ abstract class _HomeControllerBase with Store {
   _HomeControllerBase({HomeRepository? repository}) {
     this.repository = repository ?? HomeRepositoryMock();
   }
-
-  //void callback necessário para passar as infos para atualizar o set state na home page
   @action
   getEvents() async {
     state = HomeStateLoading();

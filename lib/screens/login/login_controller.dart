@@ -8,7 +8,7 @@ class LoginController = _LoginControllerBase with _$LoginController;
 
 abstract class _LoginControllerBase with Store {
   //injeção de dependência
-  final LoginServiceImpl service;
+  final LoginRepository service;
 
   _LoginControllerBase({required this.service});
 

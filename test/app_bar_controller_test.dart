@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mobx/mobx.dart' as mobx;
 import 'package:mocktail/mocktail.dart';
 import 'package:split_it/screens/home/home_state.dart';
 import 'package:split_it/screens/home/models/dashboard_model.dart';
@@ -21,24 +22,25 @@ void main() {
   test('Testando o GetDashboard retornando Success', () async {
     expect(controller.state, isInstanceOf<AppBarStateEmpty>());
     final states = <AppBarState>[];
-    controller.listen((state) => states.add(state));
+    mobx.autorun((_) => states.add(controller.state));
     when(repository.getDashboard)
         .thenAnswer((_) async => DashboardModel(send: 100, receive: 50));
     await controller.getDashboard();
-    expect(states[0], isInstanceOf<AppBarStateLoading>());
-    expect(states[1], isInstanceOf<AppBarStateSuccess>());
-    expect(states.length, 2);
+    expect(states[0], isInstanceOf<AppBarStateEmpty>());
+    expect(states[1], isInstanceOf<AppBarStateLoading>());
+    expect(states[2], isInstanceOf<AppBarStateSuccess>());
+    expect(states.length, equals(3));
   });
 
   test('Testando o GetDashboard retornando Failure', () async {
     expect(controller.state, isInstanceOf<AppBarStateEmpty>());
     final states = <AppBarState>[];
-    controller.listen((state) => states.add(state));
+    mobx.autorun((_) => states.add(controller.state));
     when(repository.getDashboard).thenThrow('Erro.');
     await controller.getDashboard();
-    expect(states[0], isInstanceOf<AppBarStateLoading>());
+    expect(states[0], isInstanceOf<AppBarStateEmpty>());
     expect(states[1], isInstanceOf<AppBarStateFailure>());
     expect((states[1] as AppBarStateFailure).message, 'Erro.');
-    expect(states.length, 2);
+    expect(states.length, equals(2));
   });
 }
