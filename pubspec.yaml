@@ -18,9 +18,9 @@ dependencies:
   mocktail: ^0.1.4
 
   #Firebase
-  firebase_core: ^1.2.0
+  firebase_core: ^1.13.1
   #GoogleLogin
-  google_sign_in: ^5.0.4
+  google_sign_in: ^5.2.4
   #Loading
   shimmer: ^2.0.0
   #date format

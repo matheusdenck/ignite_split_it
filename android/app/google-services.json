@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "859988533688",
-    "project_id": "ignite-split-it-matheusdenck",
-    "storage_bucket": "ignite-split-it-matheusdenck.appspot.com"
+    "project_number": "944884133719",
+    "project_id": "split-it-matheusdenck",
+    "storage_bucket": "split-it-matheusdenck.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:859988533688:android:77ac5206ff0870f7a86f4d",
+        "mobilesdk_app_id": "1:944884133719:android:dc9fc610f7d88c90549812",
         "android_client_info": {
           "package_name": "com.example.split_it"
         }
       },
       "oauth_client": [
         {
-          "client_id": "859988533688-l8aqa68pmpan26rnut108q003629d61q.apps.googleusercontent.com",
+          "client_id": "944884133719-trlfvigvg5d0cannilfhp408v9prdeuk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAl8N6uTB3Mh9artkIKV2RYOTN1ufy1OSI"
+          "current_key": "AIzaSyAe11aPP6YGePERkg7FQzC_6UT8Tc5ooTI"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "859988533688-l8aqa68pmpan26rnut108q003629d61q.apps.googleusercontent.com",
+              "client_id": "944884133719-trlfvigvg5d0cannilfhp408v9prdeuk.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
