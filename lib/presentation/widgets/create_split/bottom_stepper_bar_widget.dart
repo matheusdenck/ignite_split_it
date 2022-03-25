@@ -41,7 +41,7 @@ class BottomStepperBarWidget extends StatelessWidget {
               builder: (context) => StepperNextButtonWidget(
                 label: 'CONTINUAR',
                 enabled: controller.enableNavigateButton,
-                onTap: onTapCancel,
+                onTap: onTapNext,
               ),
             ),
           ],
