@@ -23,6 +23,7 @@ abstract class AppColors {
   Color get textField;
   Color get hintTextField;
   Color get inputBorder;
+  Color get success;
 }
 
 class AppColorsDefault implements AppColors {
@@ -91,4 +92,7 @@ class AppColorsDefault implements AppColors {
 
   @override
   Color get stepperNextButtonDisabled => Color(0xFF666666);
+
+  @override
+  Color get success => Color(0xFF40B28C);
 }

@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:split_it/data/models/friend_model.dart';
 import 'package:split_it/domain/repositories/firebase_repository.dart';
 
 part 'step_two_controller.g.dart';
@@ -9,12 +10,12 @@ abstract class _StepTwoControllerBase with Store {
   final repository = FirebaseRepository();
 
   @observable
-  List<Map<String, dynamic>> _friends = [];
+  List<FriendModel> _friends = [];
 
   @observable
-  List<Map<String, dynamic>> _selectedFriends = [];
+  ObservableList<FriendModel> _selectedFriends = ObservableList.of([]);
 
-  List<Map<String, dynamic>> get selectedFriends => _selectedFriends;
+  List<FriendModel> get selectedFriends => _selectedFriends;
 
   @observable
   String search = '';
@@ -25,26 +26,39 @@ abstract class _StepTwoControllerBase with Store {
   }
 
   @action
-  void addFriend(Map<String, dynamic> friend) {
-    final list = [];
-    list.add(friend);
-    _selectedFriends = List.from(list);
+  void addFriend(FriendModel friend) {
+    // USING MOBX OBSERVABLE LIST
+    _selectedFriends.add(friend);
+
+    // USING FLUTTER LIST
+    // final list = [];
+    // list.add(friend);
+    // _selectedFriends = List.from(list);
   }
 
   @action
-  void removeFriend(Map<String, dynamic> friend) {
-    final list = [];
+  void removeFriend(FriendModel friend) {
     _selectedFriends.remove(friend);
-    _selectedFriends = List.from(list);
   }
 
   @computed
-  List<Map<String, dynamic>> get items {
+  List<FriendModel> get items {
+    if (_selectedFriends.isNotEmpty) {
+      final filteredList = _friends.where((element) {
+        final contains = element.name
+            .toString()
+            .toLowerCase()
+            .contains(search.toLowerCase());
+        final existingFriend = _selectedFriends.contains(element);
+        return contains && !existingFriend;
+      }).toList();
+      return filteredList;
+    }
     if (search.isEmpty) {
       return _friends;
     } else {
       final filteredList = _friends
-          .where((element) => element['name']
+          .where((element) => element.name
               .toString()
               .toLowerCase()
               .contains(search.toLowerCase()))
@@ -56,6 +70,6 @@ abstract class _StepTwoControllerBase with Store {
   @action
   Future<void> getFriendsList() async {
     final response = await this.repository.get(collection: '/friends');
-    _friends = response;
+    _friends = response.map((e) => FriendModel.fromMap(e)).toList();
   }
 }

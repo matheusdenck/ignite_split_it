@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:split_it/theme/app_theme.dart';
 
 class PersonTileWidget extends StatelessWidget {
   final String name;
@@ -24,9 +25,21 @@ class PersonTileWidget extends StatelessWidget {
             color: Colors.grey.shade200,
           ),
         ),
-        title: Text(name),
+        title: isRemovable
+            ? Text(
+                name,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            : Text(name),
         trailing: IconButton(
-          icon: isRemovable ? Icon(Icons.remove) : Icon(Icons.add),
+          icon: isRemovable
+              ? Icon(
+                  Icons.remove,
+                  color: AppTheme.colors.error,
+                )
+              : Icon(Icons.add, color: AppTheme.colors.success),
           onPressed: onPressed,
         ),
       ),

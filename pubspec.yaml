@@ -11,11 +11,14 @@ dependencies:
   flutter:
     sdk: flutter
 
+  equatable:
+
   cupertino_icons: ^1.0.2
   google_fonts: ^2.1.0
 
   #facilitador de testes
   mocktail: ^0.1.4
+  
 
   #Firebase
   firebase_core: ^1.13.1
