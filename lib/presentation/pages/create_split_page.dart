@@ -38,7 +38,11 @@ class _CreateSplitPageState extends State<CreateSplitPage> {
     return Scaffold(
       backgroundColor: AppTheme.colors.white,
       appBar: CreateSplitAppBarWidget(
-        onTapBack: controller.backPage,
+        onTapBack: () {
+          controller.currentPage == 0
+              ? Navigator.of(context).pop()
+              : controller.backPage();
+        },
         size: pages.length,
         controller: controller,
       ),
@@ -49,7 +53,9 @@ class _CreateSplitPageState extends State<CreateSplitPage> {
       bottomNavigationBar: BottomStepperBarWidget(
           controller: controller,
           onTapNext: controller.nextPage,
-          onTapCancel: () {}),
+          onTapCancel: () {
+            Navigator.of(context).pop();
+          }),
     );
   }
 }
