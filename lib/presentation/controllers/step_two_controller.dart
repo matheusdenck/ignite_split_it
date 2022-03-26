@@ -9,18 +9,53 @@ abstract class _StepTwoControllerBase with Store {
   final repository = FirebaseRepository();
 
   @observable
-  List<Map<String, dynamic>> friends = [];
+  List<Map<String, dynamic>> _friends = [];
+
+  @observable
+  List<Map<String, dynamic>> _selectedFriends = [];
+
+  List<Map<String, dynamic>> get selectedFriends => _selectedFriends;
+
+  @observable
+  String search = '';
 
   @action
   void onChange(String value) {
-    final filteredList =
-        friends.where((element) => element['name'].contains(value)).toList();
-    friends = filteredList;
+    search = value;
+  }
+
+  @action
+  void addFriend(Map<String, dynamic> friend) {
+    final list = [];
+    list.add(friend);
+    _selectedFriends = List.from(list);
+  }
+
+  @action
+  void removeFriend(Map<String, dynamic> friend) {
+    final list = [];
+    _selectedFriends.remove(friend);
+    _selectedFriends = List.from(list);
+  }
+
+  @computed
+  List<Map<String, dynamic>> get items {
+    if (search.isEmpty) {
+      return _friends;
+    } else {
+      final filteredList = _friends
+          .where((element) => element['name']
+              .toString()
+              .toLowerCase()
+              .contains(search.toLowerCase()))
+          .toList();
+      return filteredList;
+    }
   }
 
   @action
   Future<void> getFriendsList() async {
     final response = await this.repository.get(collection: '/friends');
-    friends = response;
+    _friends = response;
   }
 }

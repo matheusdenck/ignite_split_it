@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 class PersonTileWidget extends StatelessWidget {
   final String name;
   final bool isRemovable;
-  const PersonTileWidget(
-      {Key? key, required this.name, this.isRemovable = false})
-      : super(key: key);
+  final VoidCallback onPressed;
+  const PersonTileWidget({
+    Key? key,
+    required this.name,
+    this.isRemovable = false,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +27,7 @@ class PersonTileWidget extends StatelessWidget {
         title: Text(name),
         trailing: IconButton(
           icon: isRemovable ? Icon(Icons.remove) : Icon(Icons.add),
-          onPressed: () {},
+          onPressed: onPressed,
         ),
       ),
     );
