@@ -17,13 +17,16 @@ abstract class AppColors {
   Color get backButton;
   Color get divider;
   Color get stepperNextButton;
+  Color get stepperNextButtonRegular;
   Color get stepperNextButtonDisabled;
+  Color get iconAdd;
   Color get stepperTitle;
   Color get stepperSubtitle;
   Color get textField;
   Color get hintTextField;
   Color get inputBorder;
   Color get success;
+  Color get personTileTitleSelected;
 }
 
 class AppColorsDefault implements AppColors {
@@ -76,6 +79,11 @@ class AppColorsDefault implements AppColors {
   Color get stepperNextButton => Color(0xFF455250);
 
   @override
+  Color get stepperNextButtonRegular => Color(0xFF40B28C);
+  @override
+  Color get iconAdd => Color(0xFF40B28C);
+
+  @override
   Color get stepperSubtitle => Color(0xFF455250);
 
   @override
@@ -95,4 +103,7 @@ class AppColorsDefault implements AppColors {
 
   @override
   Color get success => Color(0xFF40B28C);
+
+  @override
+  Color get personTileTitleSelected => Color(0xFF455250);
 }

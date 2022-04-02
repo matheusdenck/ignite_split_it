@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'app_theme.dart';
 
 abstract class AppTextStyles {
@@ -16,11 +17,14 @@ abstract class AppTextStyles {
   TextStyle get stepperIndicatorPrimary;
   TextStyle get stepperIndicatorSecondary;
   TextStyle get stepperNextButton;
+  TextStyle get stepperNextButtonRegular;
   TextStyle get stepperNextButtonDisabled;
   TextStyle get stepperTitle;
   TextStyle get stepperSubtitle;
   TextStyle get textField;
   TextStyle get hintTextField;
+  TextStyle get personTileTitle;
+  TextStyle get personTileTitleSelected;
 }
 
 class AppTextStyleDefault implements AppTextStyles {
@@ -146,5 +150,26 @@ class AppTextStyleDefault implements AppTextStyles {
         fontSize: 12,
         fontWeight: FontWeight.w500,
         color: AppTheme.colors.stepperNextButtonDisabled,
+      );
+
+  @override
+  TextStyle get personTileTitle => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.button,
+      );
+
+  @override
+  TextStyle get personTileTitleSelected => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: AppTheme.colors.personTileTitleSelected,
+      );
+
+  @override
+  TextStyle get stepperNextButtonRegular => GoogleFonts.inter(
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        color: AppTheme.colors.stepperNextButtonRegular,
       );
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../widgets/create_split/step_input_text_widget.dart';
+import '../../../widgets/add_text_button_widget.dart';
 import '../../../widgets/create_split/step_title_widget.dart';
+import '../../../widgets/step_multi_input_text_widget.dart';
 
 class StepThreePage extends StatefulWidget {
   const StepThreePage({Key? key}) : super(key: key);
@@ -20,37 +21,17 @@ class _StepThreePageState extends State<StepThreePage> {
           subtitle: '\nitens você quer dividir?',
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(right: 24),
-                child: Text('1'),
-              ),
-              Expanded(
-                flex: 3,
-                child: StepInputTextWidget(
-                  hintText: 'Ex: Picanha',
-                  padding: EdgeInsets.zero,
-                  onChange: (value) {},
-                  align: TextAlign.start,
-                ),
-              ),
-              Expanded(
-                child: StepInputTextWidget(
-                  hintText: 'R\$0,00',
-                  padding: EdgeInsets.zero,
-                  onChange: (value) {},
-                  align: TextAlign.start,
-                ),
-              ),
-              IconButton(
-                icon: Icon(Icons.delete),
-                onPressed: () {},
-              )
-            ],
+          padding: const EdgeInsets.only(top: 24),
+          child: StepMultiInputText(
+            count: 1,
+            itemName: (value) {},
+            itemValue: (value) {},
           ),
-        )
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 24),
+          child: AddTextButton(label: 'Continuar', onPressed: () {}),
+        ),
       ],
     );
   }
