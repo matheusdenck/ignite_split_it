@@ -15,19 +15,40 @@ class HomeRepositoryMock implements HomeRepository {
     await Future.delayed(Duration(seconds: 2));
     return [
       EventModel(
-          created: DateTime.now(), title: 'Churrasco', value: 50, people: 3),
+        created: DateTime.now(),
+        name: 'Churrasco',
+        value: 50,
+      ),
       EventModel(
-          created: DateTime.now(), title: 'Churrasco', value: -450, people: 13),
+        created: DateTime.now(),
+        name: 'Churrasco',
+        value: -450,
+      ),
       EventModel(
-          created: DateTime.now(), title: 'Churrasco', value: 50, people: 3),
+        created: DateTime.now(),
+        name: 'Churrasco',
+        value: 50,
+      ),
       EventModel(
-          created: DateTime.now(), title: 'Churrasco', value: -50, people: 3),
+        created: DateTime.now(),
+        name: 'Churrasco',
+        value: -50,
+      ),
       EventModel(
-          created: DateTime.now(), title: 'Churrasco', value: 50, people: 3),
+        created: DateTime.now(),
+        name: 'Churrasco',
+        value: 50,
+      ),
       EventModel(
-          created: DateTime.now(), title: 'Churrasco', value: -43, people: 3),
+        created: DateTime.now(),
+        name: 'Churrasco',
+        value: -43,
+      ),
       EventModel(
-          created: DateTime.now(), title: 'Churrasco', value: 50, people: 3),
+        created: DateTime.now(),
+        name: 'Churrasco',
+        value: 50,
+      ),
     ];
   }
 }

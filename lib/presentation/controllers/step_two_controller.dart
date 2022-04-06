@@ -13,7 +13,7 @@ abstract class _StepTwoControllerBase with Store {
 
   _StepTwoControllerBase({required this.createSplitController}) {
     autorun((_) {
-      createSplitController.setSelectedFriends(_selectedFriends);
+      createSplitController.onEventChanged(listFriendModel: _selectedFriends);
     });
   }
 

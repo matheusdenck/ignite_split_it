@@ -3,12 +3,13 @@ import 'package:flutter_masked_text2/flutter_masked_text2.dart';
 
 import 'create_split/step_input_text_widget.dart';
 
-class StepMultiInputText extends StatelessWidget {
+class StepMultiInputText extends StatefulWidget {
   final int count;
-  // final Function(String value) itemName;
-  // final Function(String value) itemValue;
+  final String? initialName;
+  final double? initialValue;
   final ValueChanged<String> itemName;
   final ValueChanged<double> itemValue;
+  final VoidCallback? onDelete;
   final bool isRemovable;
 
   StepMultiInputText({
@@ -17,8 +18,19 @@ class StepMultiInputText extends StatelessWidget {
     required this.itemName,
     required this.itemValue,
     this.isRemovable = false,
+    this.initialName,
+    this.initialValue,
+    this.onDelete,
   }) : super(key: key);
-  final valueInputTextController = MoneyMaskedTextController(
+
+  @override
+  State<StepMultiInputText> createState() => _StepMultiInputTextState();
+}
+
+class _StepMultiInputTextState extends State<StepMultiInputText> {
+  late MoneyMaskedTextController valueInputTextController =
+      MoneyMaskedTextController(
+    initialValue: widget.initialValue ?? 0.0,
     leftSymbol: "R\$",
     decimalSeparator: ',',
   );
@@ -31,15 +43,16 @@ class StepMultiInputText extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(right: 24),
-            child: Text('$count'),
+            child: Text('${widget.count}'),
           ),
           Expanded(
             flex: 3,
             child: StepInputTextWidget(
+              initialValue: widget.initialName,
               hintText: 'Ex: Picanha',
               padding: EdgeInsets.zero,
               onChange: (value) {
-                itemName(value);
+                widget.itemName(value);
               },
               align: TextAlign.start,
             ),
@@ -51,15 +64,19 @@ class StepMultiInputText extends StatelessWidget {
               hintText: 'R\$0,00',
               padding: EdgeInsets.zero,
               onChange: (value) {
-                itemValue(valueInputTextController.numberValue);
+                widget.itemValue(valueInputTextController.numberValue);
               },
               align: TextAlign.start,
             ),
           ),
-          if (isRemovable)
+          if (widget.isRemovable)
             IconButton(
               icon: Icon(Icons.delete),
-              onPressed: () {},
+              onPressed: () {
+                if (widget.onDelete != null) {
+                  widget.onDelete!();
+                }
+              },
             )
         ],
       ),

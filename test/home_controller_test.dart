@@ -23,10 +23,9 @@ void main() {
       mobx.autorun((_) => states.add(controller.state));
       when(repository.getEvents).thenAnswer((_) async => [
             EventModel(
-              title: 'title',
+              name: 'title',
               created: DateTime.now(),
               value: 100,
-              people: 1,
             )
           ]);
       await controller.getEvents();

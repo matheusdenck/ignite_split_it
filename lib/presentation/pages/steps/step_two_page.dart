@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:split_it/presentation/controllers/create_split_controller.dart';
 
-import '../../../controllers/step_two_controller.dart';
-import '../../../widgets/create_split/person_tile_widget.dart';
-import '../../../widgets/create_split/step_input_text_widget.dart';
-import '../../../widgets/create_split/step_title_widget.dart';
+import '../../controllers/step_two_controller.dart';
+import '../../widgets/create_split/person_tile_widget.dart';
+import '../../widgets/create_split/step_input_text_widget.dart';
+import '../../widgets/create_split/step_title_widget.dart';
 
 class StepTwoPage extends StatefulWidget {
   final CreateSplitController createSplitController;

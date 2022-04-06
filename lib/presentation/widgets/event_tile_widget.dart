@@ -14,7 +14,7 @@ class EventTileWidget extends StatelessWidget {
       : super(key: key);
 
   IconDollarType get type =>
-      model.value! >= 0 ? IconDollarType.receive : IconDollarType.send;
+      model.value >= 0 ? IconDollarType.receive : IconDollarType.send;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +62,7 @@ class EventTileWidget extends StatelessWidget {
               children: [
                 ListTile(
                   contentPadding: EdgeInsets.zero,
-                  title: Text(model.title!,
+                  title: Text(model.name,
                       style: AppTheme.textStyles.eventTileTitle),
                   subtitle: Text(
                       '${DateFormat('d MMMM', Intl.systemLocale).format(model.created!)}',
@@ -70,13 +70,13 @@ class EventTileWidget extends StatelessWidget {
                   trailing: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('R\$${(model.value!.abs()).toStringAsFixed(2)}',
+                      Text('R\$${(model.value.abs()).toStringAsFixed(2)}',
                           style: AppTheme.textStyles.eventTileMoney),
                       SizedBox(
                         height: 5,
                       ),
                       Text(
-                          '${model.people!.toStringAsFixed(0)} pessoa${model.people == 1 ? '' : 's'}',
+                          '${model.people.toStringAsFixed(0)} pessoa${model.people == 1 ? '' : 's'}',
                           style: AppTheme.textStyles.eventTilePeople),
                     ],
                   ),
