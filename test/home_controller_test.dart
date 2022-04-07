@@ -2,12 +2,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mobx/mobx.dart' as mobx;
 import 'package:mocktail/mocktail.dart';
 import 'package:split_it/data/models/event_model.dart';
-import 'package:split_it/domain/repositories/home_repository.dart';
+import 'package:split_it/domain/repositories/home_repository_mock.dart';
 import 'package:split_it/presentation/controllers/home_controller.dart';
 import 'package:split_it/shared/utils/store_state.dart';
 
 //classe mockada
-class HomeRepositoryMock extends Mock implements HomeRepository {}
+class HomeRepositoryMock extends Mock implements IHomeRepositoryMock {}
 
 void main() {
   late HomeController controller;

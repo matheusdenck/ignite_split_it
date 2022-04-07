@@ -23,7 +23,7 @@ class EventModel extends BaseModel {
   }) : super(collection: '/events');
 
   int get people => friendsList.length;
-  double get splitValue => (value / friendsList.length);
+  double get splitValue => (calcValue / friendsList.length);
   double get calcValue => itensList.isNotEmpty
       ? itensList
           .reduce(
@@ -65,7 +65,7 @@ class EventModel extends BaseModel {
     return EventModel(
       name: map['title'],
       created: map['created'] != null
-          ? DateTime.fromMillisecondsSinceEpoch(map['created'])
+          ? (map['created'] as Timestamp).toDate()
           : null,
       value: map['value']?.toDouble(),
       itensList: List<ItemModel>.from(

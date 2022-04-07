@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../data/models/event_model.dart';
-import '../../domain/repositories/home_repository.dart';
 import '../../domain/repositories/home_repository_mock.dart';
+import '../../domain/repositories/home_repository_mock_impl.dart';
 import '../../shared/utils/store_state.dart';
 
 part 'home_controller.g.dart';
@@ -11,7 +11,7 @@ part 'home_controller.g.dart';
 class HomeController = _HomeControllerBase with _$HomeController;
 
 abstract class _HomeControllerBase with Store {
-  late HomeRepository repository;
+  late IHomeRepositoryMock repository;
 
   @observable
   StoreState state = StoreState.initial;
@@ -19,8 +19,8 @@ abstract class _HomeControllerBase with Store {
   @observable
   List<EventModel> events = [];
 
-  _HomeControllerBase({HomeRepository? repository}) {
-    this.repository = repository ?? HomeRepositoryMock();
+  _HomeControllerBase({IHomeRepositoryMock? repository}) {
+    this.repository = repository ?? HomeRepositoryMockImpl();
   }
   @action
   Future<void> getEvents() async {

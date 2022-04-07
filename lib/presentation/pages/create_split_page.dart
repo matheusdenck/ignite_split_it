@@ -37,7 +37,7 @@ class _CreateSplitPageState extends State<CreateSplitPage> {
         createSplitController: createSplitController,
       ),
       StepFourPage(
-        event: createSplitController.event,
+        createSplitController: createSplitController,
       ),
     ];
     super.initState();
