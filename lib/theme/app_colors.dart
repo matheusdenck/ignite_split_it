@@ -16,6 +16,7 @@ abstract class AppColors {
   Color get stepperIndicatorSecondary;
   Color get backButton;
   Color get divider;
+  Color get dividerDisabled;
   Color get stepperNextButton;
   Color get stepperNextButtonRegular;
   Color get stepperNextButtonDisabled;
@@ -27,6 +28,15 @@ abstract class AppColors {
   Color get inputBorder;
   Color get success;
   Color get personTileTitleSelected;
+  Color get checkBoxBackgroundDisabled;
+  Color get checkBoxBackgroundEnabled;
+  Color get checkBoxDisabled;
+  Color get checkBoxEnabled;
+  Color get checkBoxBorder;
+  Color get eventDetailPersonTileTitle;
+  Color get eventDetailPersonTileSubtitlePaid;
+  Color get eventDetailPersonTileSubtitleUnpaid;
+  Color get eventDetailDivider;
 }
 
 class AppColorsDefault implements AppColors {
@@ -76,6 +86,9 @@ class AppColorsDefault implements AppColors {
   Color get divider => Color(0xFF666666);
 
   @override
+  Color get dividerDisabled => Color(0xFF666666).withOpacity(0.2);
+
+  @override
   Color get stepperNextButton => Color(0xFF455250);
 
   @override
@@ -99,11 +112,38 @@ class AppColorsDefault implements AppColors {
   Color get inputBorder => Color(0xFF455250);
 
   @override
-  Color get stepperNextButtonDisabled => Color(0xFF666666);
+  Color get stepperNextButtonDisabled => Color(0xFF666666).withOpacity(0.2);
 
   @override
   Color get success => Color(0xFF40B28C);
 
   @override
   Color get personTileTitleSelected => Color(0xFF455250);
+
+  @override
+  Color get checkBoxEnabled => Color(0xFF40B38C);
+
+  @override
+  Color get checkBoxBackgroundEnabled => Color(0xFF40B38C).withOpacity(0.16);
+
+  @override
+  Color get checkBoxDisabled => Color(0xFFFFFFFF);
+
+  @override
+  Color get checkBoxBackgroundDisabled => Color(0xFF455250).withOpacity(0.08);
+
+  @override
+  Color get checkBoxBorder => Color(0xFFC0CCC9);
+
+  @override
+  Color get eventDetailPersonTileTitle => Color(0xFF666666);
+
+  @override
+  Color get eventDetailPersonTileSubtitlePaid => Color(0xFF40B28C);
+
+  @override
+  Color get eventDetailPersonTileSubtitleUnpaid => Color(0xFFE83F5B);
+
+  @override
+  Color get eventDetailDivider => Color(0xFF455250).withOpacity(0.08);
 }

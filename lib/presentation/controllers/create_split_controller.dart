@@ -4,6 +4,7 @@ import 'package:split_it/domain/repositories/firebase_repository.dart';
 
 import '../../data/models/friend_model.dart';
 import '../../data/models/item_model.dart';
+import '../../shared/utils/store_state.dart';
 
 part 'create_split_controller.g.dart';
 
@@ -22,18 +23,17 @@ abstract class _CreateSplitControllerBase with Store {
   EventModel event = EventModel();
 
   @observable
-  String status = 'empty';
+  StoreState status = StoreState.initial;
 
   @action
   Future<void> saveEvent() async {
     try {
-      status = 'loading';
+      status = StoreState.loading;
       final response = await repository.create(event);
       print(response);
-      status = 'success';
-      nextPage();
+      status = StoreState.success;
     } catch (e) {
-      status = 'error';
+      status = StoreState.error;
     }
   }
 
@@ -51,7 +51,7 @@ abstract class _CreateSplitControllerBase with Store {
 
   @action
   void nextPage() {
-    if (currentPage < 3) {
+    if (currentPage < 2) {
       currentPage++;
     }
   }

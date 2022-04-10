@@ -19,12 +19,17 @@ abstract class AppTextStyles {
   TextStyle get stepperNextButton;
   TextStyle get stepperNextButtonRegular;
   TextStyle get stepperNextButtonDisabled;
+  TextStyle get appBarEventDetailsTitle;
   TextStyle get stepperTitle;
   TextStyle get stepperSubtitle;
   TextStyle get textField;
   TextStyle get hintTextField;
   TextStyle get personTileTitle;
   TextStyle get personTileTitleSelected;
+  TextStyle get eventDetailPersonTileTitle;
+  TextStyle get eventDetailPersonTileSubtitlePaid;
+  TextStyle get eventDetailPersonTileSubtitleUnpaid;
+  TextStyle get eventDetailSubtitle;
 }
 
 class AppTextStyleDefault implements AppTextStyles {
@@ -171,5 +176,40 @@ class AppTextStyleDefault implements AppTextStyles {
         fontSize: 16,
         fontWeight: FontWeight.w500,
         color: AppTheme.colors.stepperNextButtonRegular,
+      );
+
+  @override
+  TextStyle get appBarEventDetailsTitle => GoogleFonts.montserrat(
+        color: AppTheme.colors.eventTileTitle,
+        fontWeight: FontWeight.w700,
+        fontSize: 22,
+      );
+
+  @override
+  TextStyle get eventDetailPersonTileTitle => GoogleFonts.roboto(
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        color: AppTheme.colors.eventDetailPersonTileTitle,
+      );
+
+  @override
+  TextStyle get eventDetailPersonTileSubtitlePaid => GoogleFonts.roboto(
+        fontSize: 12,
+        fontWeight: FontWeight.w700,
+        color: AppTheme.colors.eventDetailPersonTileSubtitlePaid,
+      );
+
+  @override
+  TextStyle get eventDetailPersonTileSubtitleUnpaid => GoogleFonts.roboto(
+        fontSize: 12,
+        fontWeight: FontWeight.w700,
+        color: AppTheme.colors.eventDetailPersonTileSubtitleUnpaid,
+      );
+
+  @override
+  TextStyle get eventDetailSubtitle => GoogleFonts.roboto(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: AppTheme.colors.eventTileTitle,
       );
 }

@@ -27,7 +27,7 @@ dependencies:
   google_sign_in: ^5.2.4
   #Loading
   shimmer: ^2.0.0
-  #date format
+  #date format/localization
   intl: ^0.17.0
   #Gerencia de estado
   mobx: ^2.0.4
@@ -36,6 +36,9 @@ dependencies:
 
   #Mascara de texto
   flutter_masked_text2: ^0.9.1
+
+  #tratamento de erros
+  bot_toast: ^4.0.1
 
 dev_dependencies:
   flutter_test:

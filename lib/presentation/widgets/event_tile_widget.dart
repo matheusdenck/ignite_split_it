@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:split_it/presentation/pages/event_details_page.dart';
 import 'package:split_it/presentation/widgets/loading_widget.dart';
+import 'package:split_it/shared/utils/formatters.dart';
 import 'package:split_it/theme/app_theme.dart';
 
 import '../../../data/models/event_model.dart';
@@ -51,42 +52,51 @@ class EventTileWidget extends StatelessWidget {
         ],
       );
     }
-    return Row(
-      children: [
-        IconDollarWidget(type: type),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  title: Text(model.name,
-                      style: AppTheme.textStyles.eventTileTitle),
-                  subtitle: Text(
-                      '${DateFormat('d MMMM', Intl.systemLocale).format(model.created!)}',
-                      style: AppTheme.textStyles.eventTileSubtitle),
-                  trailing: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('R\$${(model.value.abs()).toStringAsFixed(2)}',
-                          style: AppTheme.textStyles.eventTileMoney),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                          '${model.people.toStringAsFixed(0)} pessoa${model.people == 1 ? '' : 's'}',
-                          style: AppTheme.textStyles.eventTilePeople),
-                    ],
+    return InkWell(
+      onTap: (() => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => EventDetailsPage(event: model),
+            ),
+          )),
+      child: Row(
+        children: [
+          IconDollarWidget(type: type),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    title: Text(model.name,
+                        style: AppTheme.textStyles.eventTileTitle),
+                    subtitle: Text(
+                      model.created!.formatToDayMonth(),
+                      style: AppTheme.textStyles.eventTileSubtitle,
+                    ),
+                    trailing: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('${(model.value.abs()).reais()}',
+                            style: AppTheme.textStyles.eventTileMoney),
+                        SizedBox(
+                          height: 5,
+                        ),
+                        Text(
+                            '${model.people.toStringAsFixed(0)} pessoa${model.people == 1 ? '' : 's'}',
+                            style: AppTheme.textStyles.eventTilePeople),
+                      ],
+                    ),
                   ),
-                ),
-                Divider(),
-              ],
+                  Divider(),
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

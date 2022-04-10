@@ -51,13 +51,13 @@ mixin _$CreateSplitController on _CreateSplitControllerBase, Store {
   final _$statusAtom = Atom(name: '_CreateSplitControllerBase.status');
 
   @override
-  String get status {
+  StoreState get status {
     _$statusAtom.reportRead();
     return super.status;
   }
 
   @override
-  set status(String value) {
+  set status(StoreState value) {
     _$statusAtom.reportWrite(value, super.status, () {
       super.status = value;
     });

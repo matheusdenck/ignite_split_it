@@ -19,15 +19,21 @@ class StepTwoPage extends StatefulWidget {
 }
 
 class _StepTwoPageState extends State<StepTwoPage> {
-  late StepTwoController createSplitController;
+  late StepTwoController stepTwoController;
 
   @override
   void initState() {
-    createSplitController = StepTwoController(
+    stepTwoController = StepTwoController(
       createSplitController: widget.createSplitController,
     );
-    createSplitController.getFriendsList();
+    stepTwoController.getFriendsList();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    stepTwoController.dispose();
+    super.dispose();
   }
 
   @override
@@ -37,25 +43,25 @@ class _StepTwoPageState extends State<StepTwoPage> {
         StepTitleWidget(title: 'Com quem', subtitle: '\nvocê quer dividir?'),
         StepInputTextWidget(
           onChange: (value) {
-            createSplitController.onChange(value);
+            stepTwoController.onChange(value);
           },
           hintText: 'Nome da pessoa',
         ),
         SizedBox(height: 34),
         Observer(
           builder: (_) {
-            if (createSplitController.selectedFriends.isEmpty) {
+            if (stepTwoController.selectedFriends.isEmpty) {
               return SizedBox.shrink();
             } else {
               return Column(
                 children: [
-                  ...createSplitController.selectedFriends
+                  ...stepTwoController.selectedFriends
                       .map(
                         (e) => PersonTileWidget(
                           friendData: e,
                           isRemovable: true,
                           onPressed: () {
-                            createSplitController.removeFriend(e);
+                            stepTwoController.removeFriend(e);
                           },
                         ),
                       )
@@ -68,16 +74,16 @@ class _StepTwoPageState extends State<StepTwoPage> {
         ),
         Observer(
           builder: (_) {
-            if (createSplitController.items.isEmpty) {
+            if (stepTwoController.items.isEmpty) {
               return Text('Nenhum amigo encontrado');
             } else {
               return Column(
-                children: createSplitController.items
+                children: stepTwoController.items
                     .map(
                       (e) => PersonTileWidget(
                         friendData: e,
                         onPressed: () {
-                          createSplitController.addFriend(e);
+                          stepTwoController.addFriend(e);
                         },
                       ),
                     )
