@@ -72,7 +72,8 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
               padding: const EdgeInsets.only(top: 8.0),
               child: Container(
                 color: AppTheme.colors.white,
-                padding: EdgeInsets.all(24),
+                padding:
+                    EdgeInsets.only(left: 24, right: 24, top: 24, bottom: 0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -81,11 +82,15 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       'ITENS',
                       style: AppTheme.textStyles.eventDetailSubtitle,
                     ),
-                    //TODO: criar componente de itens
+                    SizedBox(
+                      height: 19,
+                    ),
+                    Divider(color: AppTheme.colors.dividerDisabled),
                     ...widget.event.itensList
                         .map(
                           (e) => ItemTileWidget(
-                            model: e,
+                            name: e.name,
+                            value: e.value,
                           ),
                         )
                         .toList(),
@@ -93,6 +98,14 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                 ),
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: ItemTileWidget(
+                name: 'Total',
+                value: widget.event.value,
+                hasDivider: false,
+              ),
+            )
           ],
         ),
       ),
