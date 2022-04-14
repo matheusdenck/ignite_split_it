@@ -126,7 +126,7 @@ class _SplashPageState extends State<SplashPage> {
                     ],
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 25,
                   ),
                 ],
               ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:split_it/data/models/event_model.dart';
 import 'package:split_it/presentation/widgets/event_details/event_detail_person_tile_widget.dart';
+import 'package:split_it/presentation/widgets/item_tile_widget.dart';
 
 import '../../theme/app_theme.dart';
 
@@ -81,12 +82,10 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                       style: AppTheme.textStyles.eventDetailSubtitle,
                     ),
                     //TODO: criar componente de itens
-                    ...widget.event.friendsList
+                    ...widget.event.itensList
                         .map(
-                          (e) => EventDetailPersonTileWidget(
-                            onPressed: () {},
-                            friend: e,
-                            value: widget.event.calcValue,
+                          (e) => ItemTileWidget(
+                            model: e,
                           ),
                         )
                         .toList(),

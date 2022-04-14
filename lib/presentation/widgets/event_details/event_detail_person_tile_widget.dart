@@ -10,6 +10,7 @@ class EventDetailPersonTileWidget extends StatelessWidget {
   final VoidCallback onPressed;
   final FriendModel friend;
   final double value;
+
   EventDetailPersonTileWidget({
     Key? key,
     this.isPaid = false,
