@@ -11,6 +11,7 @@ class EventModel extends BaseModel {
   final String name;
   final DateTime? created;
   final double value;
+  final double valuePaid;
   final List<ItemModel> itensList;
   final List<FriendModel> friendsList;
 
@@ -18,12 +19,14 @@ class EventModel extends BaseModel {
     this.name = '',
     this.created,
     this.value = 0,
+    this.valuePaid = 0,
     this.itensList = const [],
     this.friendsList = const [],
   }) : super(collection: '/events');
 
   int get people => friendsList.length;
   double get splitValue => (calcValue / friendsList.length);
+  double get remainingValue => value - valuePaid;
   double get calcValue => itensList.isNotEmpty
       ? itensList
           .reduce(
@@ -37,6 +40,7 @@ class EventModel extends BaseModel {
     String? name,
     DateTime? created,
     double? value,
+    double? valuePaid,
     List<ItemModel>? itensList,
     List<FriendModel>? friendsList,
   }) {
@@ -44,6 +48,7 @@ class EventModel extends BaseModel {
       name: name ?? this.name,
       created: created ?? this.created,
       value: value == 0 ? calcValue : this.value,
+      valuePaid: valuePaid ?? this.valuePaid,
       itensList: itensList ?? this.itensList,
       friendsList: friendsList ?? this.friendsList,
     );
@@ -56,6 +61,7 @@ class EventModel extends BaseModel {
       //utiliza a hora do servidor do firebase
       'created': FieldValue.serverTimestamp(),
       'value': calcValue,
+      'valuePaid': valuePaid,
       'itensList': itensList.map((x) => x.toMap()).toList(),
       'friendsList': friendsList.map((x) => x.toMap()).toList(),
     };
@@ -68,6 +74,7 @@ class EventModel extends BaseModel {
           ? (map['created'] as Timestamp).toDate()
           : null,
       value: map['value']?.toDouble(),
+      valuePaid: map['valuePaid']?.toDouble() ?? 0,
       itensList: List<ItemModel>.from(
           map['itensList']?.map((x) => ItemModel.fromMap(x))),
       friendsList: List<FriendModel>.from(
