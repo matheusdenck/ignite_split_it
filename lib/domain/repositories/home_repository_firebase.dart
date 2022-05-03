@@ -20,7 +20,7 @@ class HomeRepositoryFirebase implements IHomeRepositoryMock {
       final eventsList = response.map((e) => EventModel.fromMap(e)).toList();
       return eventsList;
     } catch (e) {
-      return [];
+      throw e;
     }
   }
 }

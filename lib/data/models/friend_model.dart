@@ -3,19 +3,23 @@ import 'dart:convert';
 class FriendModel {
   final String name;
   final String photoURL;
+  final bool isPaid;
 
   FriendModel({
     required this.name,
     required this.photoURL,
+    this.isPaid = false,
   });
 
   //devolve uma instancia nova com um valor novo e endereço de memoria novo
   FriendModel copyWith({
     String? name,
     String? photoURL,
+    bool? isPaid,
   }) {
     return FriendModel(
       name: name ?? this.name,
+      isPaid: isPaid ?? this.isPaid,
       photoURL: photoURL ?? this.photoURL,
     );
   }
@@ -24,6 +28,7 @@ class FriendModel {
     return {
       'name': name,
       'photoURL': photoURL,
+      'isPaid': isPaid,
     };
   }
 
@@ -32,6 +37,7 @@ class FriendModel {
       name: map['name'] ?? '',
       photoURL: map['photoURL'] ??
           'https://www.pikpng.com/pngl/b/263-2631740_empty-avatar-png-user-png-clipart.png',
+      isPaid: map['isPaid'] ?? false,
     );
   }
 
@@ -49,7 +55,8 @@ class FriendModel {
 
     return other is FriendModel &&
         other.name == name &&
-        other.photoURL == photoURL;
+        other.photoURL == photoURL &&
+        other.isPaid == isPaid;
   }
 
   @override

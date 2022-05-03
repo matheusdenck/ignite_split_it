@@ -19,4 +19,18 @@ abstract class _EventDetailsControllerBase with Store {
   void updateState(StoreState newState) {
     eventDetailState = newState;
   }
+
+  @action
+  Future<void> delete(String id) async {
+    updateState(StoreState.loading);
+    final response = await this.firebaseRepository.delete(
+          id: id,
+          collection: '/events',
+        );
+    if (response) {
+      updateState(StoreState.success);
+    } else {
+      updateState(StoreState.error);
+    }
+  }
 }

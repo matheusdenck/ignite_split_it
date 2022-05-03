@@ -8,6 +8,7 @@ import '../../data/models/event_model.dart';
 import '../controllers/home_controller.dart';
 import '../widgets/app_bar_widget.dart';
 import '../widgets/event_tile_widget.dart';
+import 'event_details_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -58,7 +59,19 @@ class _HomePageState extends State<HomePage> {
                     return Column(
                       children: controller.events
                           .map(
-                            (e) => EventTileWidget(model: e),
+                            (e) => EventTileWidget(
+                              model: e,
+                              onTap: () async {
+                                await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => EventDetailsPage(event: e),
+                                  ),
+                                ).then((value) {
+                                  return controller.getEvents();
+                                });
+                              },
+                            ),
                           )
                           .toList(),
                     );

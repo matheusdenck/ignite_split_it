@@ -9,6 +9,7 @@ import 'item_model.dart';
 
 class EventModel extends BaseModel {
   final String name;
+  final String id;
   final DateTime? created;
   final double value;
   final double valuePaid;
@@ -17,6 +18,7 @@ class EventModel extends BaseModel {
 
   EventModel({
     this.name = '',
+    this.id = '',
     this.created,
     this.value = 0,
     this.valuePaid = 0,
@@ -38,6 +40,7 @@ class EventModel extends BaseModel {
 
   EventModel copyWith({
     String? name,
+    String? id,
     DateTime? created,
     double? value,
     double? valuePaid,
@@ -46,6 +49,7 @@ class EventModel extends BaseModel {
   }) {
     return EventModel(
       name: name ?? this.name,
+      id: id ?? this.name,
       created: created ?? this.created,
       value: value == 0 ? calcValue : this.value,
       valuePaid: valuePaid ?? this.valuePaid,
@@ -58,6 +62,7 @@ class EventModel extends BaseModel {
   Map<String, dynamic> toMap() {
     return {
       'title': name,
+      'id': id,
       //utiliza a hora do servidor do firebase
       'created': FieldValue.serverTimestamp(),
       'value': calcValue,
@@ -70,6 +75,7 @@ class EventModel extends BaseModel {
   factory EventModel.fromMap(Map<String, dynamic> map) {
     return EventModel(
       name: map['title'],
+      id: map['id'],
       created: map['created'] != null
           ? (map['created'] as Timestamp).toDate()
           : null,
@@ -98,6 +104,7 @@ class EventModel extends BaseModel {
 
     return other is EventModel &&
         other.name == name &&
+        other.id == id &&
         other.created == created &&
         other.value == value &&
         listEquals(other.itensList, itensList) &&

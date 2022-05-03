@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:split_it/presentation/widgets/event_details/check_button_widget.dart';
+import 'package:split_it/presentation/widgets/event_details/check_button_widget/check_button_widget.dart';
 import 'package:split_it/shared/utils/formatters.dart';
 
+import '../../../data/models/event_model.dart';
 import '../../../data/models/friend_model.dart';
 import '../../../theme/app_theme.dart';
 
 class EventDetailPersonTileWidget extends StatelessWidget {
-  final bool isPaid;
-  final VoidCallback onPressed;
   final FriendModel friend;
   final double value;
+  final EventModel event;
 
   EventDetailPersonTileWidget({
     Key? key,
-    this.isPaid = false,
-    required this.onPressed,
     required this.friend,
     required this.value,
+    required this.event,
   }) : super(key: key);
 
   @override
@@ -41,13 +40,13 @@ class EventDetailPersonTileWidget extends StatelessWidget {
       ),
       subtitle: Text(
         value.reais(),
-        style: isPaid
+        style: friend.isPaid
             ? AppTheme.textStyles.eventDetailPersonTileSubtitlePaid
             : AppTheme.textStyles.eventDetailPersonTileSubtitleUnpaid,
       ),
       trailing: CheckButtonWidget(
-        isEnabled: isPaid,
-        onPressed: onPressed,
+        event: event,
+        friend: friend,
       ),
     );
   }

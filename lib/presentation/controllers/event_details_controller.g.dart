@@ -25,6 +25,13 @@ mixin _$EventDetailsController on _EventDetailsControllerBase, Store {
     });
   }
 
+  final _$deleteAsyncAction = AsyncAction('_EventDetailsControllerBase.delete');
+
+  @override
+  Future<void> delete(String id) {
+    return _$deleteAsyncAction.run(() => super.delete(id));
+  }
+
   final _$_EventDetailsControllerBaseActionController =
       ActionController(name: '_EventDetailsControllerBase');
 

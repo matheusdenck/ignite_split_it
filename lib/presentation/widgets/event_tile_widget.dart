@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:split_it/presentation/pages/event_details_page.dart';
 import 'package:split_it/presentation/widgets/loading_widget.dart';
 import 'package:split_it/shared/utils/formatters.dart';
 import 'package:split_it/theme/app_theme.dart';
@@ -10,9 +9,14 @@ import 'icon_dollar_widget.dart';
 class EventTileWidget extends StatelessWidget {
   final EventModel model;
   final bool isLoading;
+  final VoidCallback? onTap;
 
-  const EventTileWidget({Key? key, required this.model, this.isLoading = false})
-      : super(key: key);
+  const EventTileWidget({
+    Key? key,
+    required this.model,
+    this.isLoading = false,
+    this.onTap,
+  }) : super(key: key);
 
   IconDollarType get type =>
       model.value >= 0 ? IconDollarType.receive : IconDollarType.send;
@@ -53,12 +57,7 @@ class EventTileWidget extends StatelessWidget {
       );
     }
     return InkWell(
-      onTap: (() => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => EventDetailsPage(event: model),
-            ),
-          )),
+      onTap: onTap,
       child: Row(
         children: [
           IconDollarWidget(type: type),

@@ -1,10 +1,13 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:mobx/mobx.dart';
 import 'package:split_it/data/models/event_model.dart';
 import 'package:split_it/domain/repositories/firebase_repository.dart';
 import 'package:split_it/presentation/widgets/event_details/event_detail_person_tile_widget.dart';
 import 'package:split_it/presentation/widgets/item_tile_widget.dart';
 import 'package:split_it/shared/utils/formatters.dart';
 
+import '../../shared/utils/store_state.dart';
 import '../../theme/app_theme.dart';
 import '../controllers/event_details_controller.dart';
 
@@ -23,6 +26,30 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
   final controller = EventDetailsController(
     firebaseRepository: FirebaseRepository(),
   );
+  late ReactionDisposer _disposer;
+  @override
+  void initState() {
+    _disposer = autorun((_) {
+      if (controller.eventDetailState == StoreState.success) {
+        BotToast.closeAllLoading();
+        Navigator.pop(context);
+        BotToast.showText(text: 'Evento excluído.');
+      } else if (controller.eventDetailState == StoreState.error) {
+        BotToast.closeAllLoading();
+        BotToast.showText(text: 'Não foi possível deletar esse evento');
+      } else if (controller.eventDetailState == StoreState.loading) {
+        BotToast.showLoading();
+      }
+    });
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _disposer();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -40,7 +67,9 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           leading: BackButton(color: AppTheme.colors.backButton),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () {
+                controller.delete(widget.event.id);
+              },
               icon: Icon(Icons.delete_outline),
               color: AppTheme.colors.backButton,
             )
@@ -67,7 +96,7 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
                         ...widget.event.friendsList
                             .map(
                               (e) => EventDetailPersonTileWidget(
-                                onPressed: () {},
+                                event: widget.event,
                                 friend: e,
                                 value: widget.event.splitValue,
                               ),
